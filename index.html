@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TANJIM RAHMAN - CS Student Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(15, 15, 15, 0.95);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        /* Focus States for Accessibility */
+        a:focus,
+        button:focus {
+            outline: 2px solid #60a5fa;
+            outline-offset: 3px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #60a5fa;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(96, 165, 250, 0.3);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #60a5fa;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #151515;
+            border: 1px solid #252525;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #60a5fa;
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.2);
+        }
+
+        .project-card h3 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .project-summary {
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .project-story {
+            display: none;
+            color: #b0b0b0;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #252525;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .project-story.expanded {
+            display: block;
+        }
+
+        .project-story p {
+            margin-bottom: 1rem;
+            color: #b0b0b0;
+        }
+
+        .project-story em {
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .read-more-btn {
+            background: transparent;
+            border: 1px solid #60a5fa;
+            color: #60a5fa;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more-btn:hover {
+            background: #60a5fa;
+            color: #0a0a0a;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #252525;
+            color: #60a5fa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            background: #151515;
+            border-left: 3px solid #60a5fa;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .experience-item h3 {
+            color: #e0e0e0;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .experience-item ul {
+            margin-left: 1.5rem;
+            color: #9ca3af;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .skill-category {
+            background: #151515;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #252525;
+        }
+
+        .skill-category h3 {
+            color: #60a5fa;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            background: #252525;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            background: #151515;
+            padding: 4rem 0;
+        }
+
+        .contact a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #252525;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Tanjim Rahman</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Hi, I'm Tanjim Rahman</h1>
+            <p>Computer Science Student at the University of Calgary | Seeking Co-op Opportunities</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I'm a Computer Science student at the University of Calgary with a passion for building robust, scalable software solutions. My journey has taken me from low-level assembly programming and computer architecture to full-stack web development and database systems—giving me a unique perspective on how software works at every layer.</p>
+                
+                <p>I specialize in leadership-driven development. Whether orchestrating a 20-person Agile team for a self-checkout system, designing normalized database architectures, or achieving 100% test coverage on production code, I've learned that great software requires both technical excellence and effective communication. I don't just write code—I anticipate problems, coordinate teams, and build solutions that last.</p>
+                
+                <p>My technical toolkit spans multiple domains: I've developed full-stack applications with Python and MySQL, built GUI systems with JavaFX, implemented network protocols in C, analyzed statistical data with Tableau, and even competed in hackathons. But what sets me apart is my approach—I lead projects from concept to deployment, ensuring every team member understands the vision and every line of code serves a purpose.</p>
+                
+                <p>Beyond academics, I've applied these skills in real-world settings: training teams on complex POS systems at McDonald's, delivering Level 1 technical support for gaming events, and mentoring 50+ new students as an Orientation Leader. These experiences taught me that technology is only as valuable as the people who use it—and that communication and empathy are just as critical as algorithms and data structures.</p>
+                
+                <p>I'm currently seeking co-op opportunities where I can contribute to meaningful projects, collaborate with experienced developers, and continue growing as both a technologist and a leader. Whether it's software development, data analytics, systems engineering, or IT infrastructure—I'm ready to bring technical depth, leadership experience, and a relentless commitment to quality.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <!-- Computer Hardware Store -->
+                <div class="project-card">
+                    <h3>Computer Hardware Store</h3>
+                    <p class="project-summary">Full-stack web application simulating a hardware store's customer and admin operations with a normalized MySQL database for inventory, employee, and transaction management. Integrated Python backend with responsive frontend for real-time data updates.</p>
+                    
+                    <div class="project-story" id="story-1">
+                        <p><em>Two weeks before our project proposal deadline, my team of three stood at a crossroads—no concrete idea, no direction, just possibilities. I knew we needed leadership.</em></p>
+                        
+                        <p>I called an emergency meeting. Around that table, we brainstormed entity relationships for different concepts—a library system, a restaurant platform, a hardware store. I drew entity-relationship diagrams for each idea on the whiteboard, mapping out customers, products, transactions. The computer hardware store clicked—it had the perfect complexity: inventory management, employee tracking, customer orders, all interconnected.</p>
+                        
+                        <p>But I didn't stop there. I insisted on an in-person meeting to finalize every entity, every relationship. We sat for hours, debating: "Should employees have departments?" "How do we handle product categories?" "What about transaction history?" By the end, we had a complete EERM that everyone understood.</p>
+                        
+                        <p>Halfway through development, before our presentation, I sensed potential chaos. Our frontend developer seemed uncertain about layout. So I asked him: "Can you sketch what you want it to look like? Just rough wireframes." He hesitated but agreed.</p>
+                        
+                        <p>Weeks later, when he began coding the interface, he pulled me aside: "That sketching exercise you made me do? It saved me. I knew exactly what to build." That moment validated everything—leadership isn't just about organizing meetings; it's about anticipating problems your team doesn't even see yet.</p>
+                        
+                        <p><em>When we presented our normalized MySQL database with real-time Python backend integration, we weren't just showing code—we were showing the result of foresight, planning, and a team that trusted each other's strengths.</em></p>
+                    </div>
+                    
+                    <button type="button" class="read-more-btn" onclick="toggleStory('story-1', this)" aria-expanded="false" aria-controls="story-1">
+                        Read Story ▼
+                    </button>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Git</span>
+                    </div>
+                </div>
+
+                <!-- Self-Checkout System -->
+                <div class="project-card">
+                    <h3>Self-Checkout System Software</h3>
+                    <p class="project-summary">Collaborated in a 20-member Agile team to design and implement a self-checkout system with simulated hardware. Developed Java Swing interfaces and integrated façade modules for barcode scanning, weighing, and payment processing.</p>
+                    
+                    <div class="project-story" id="story-2">
+                        <p><em>When they announced we'd be working in a 20-person Agile team, I felt the complexity immediately. Twenty different coding styles. Twenty schedules. Twenty opinions. This wasn't just software engineering—it was organizational chaos waiting to happen.</em></p>
+                        
+                        <p>The first sprint planning meeting proved it. People talked over each other. Task assignments were vague. "Who's handling the barcode scanner?" "What about payment processing?" Nobody knew.</p>
+                        
+                        <p>We made a decision: divide and conquer. Five major components, four people per team. I became lead of one quartet. But here's what I learned—having four people doesn't automatically make you organized.</p>
+                        
+                        <p>I started scheduling small stand-ups for just my team. Not the full 20-person circus—just us four. "What did you do yesterday? What's blocking you today?" Simple questions, but they worked. We debugged together. When my teammate's façade module wouldn't integrate with the weighing scale simulation, we huddled around one laptop and worked through it line by line.</p>
+                        
+                        <p>Other teams saw our rhythm and adopted similar approaches. Suddenly, the 20-person team didn't feel overwhelming—it felt like five coordinated units with clear communication channels.</p>
+                        
+                        <p><em>On demo day, when our self-checkout system processed its first transaction—scanning barcode, calculating weight, accepting payment—it wasn't just code executing. It was 20 people who had learned to move as one. We hit obstacles, restructured, adapted, and delivered.</em></p>
+                    </div>
+                    
+                    <button type="button" class="read-more-btn" onclick="toggleStory('story-2', this)" aria-expanded="false" aria-controls="story-2">
+                        Read Story ▼
+                    </button>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Java Swing</span>
+                        <span class="tag">UML</span>
+                        <span class="tag">Agile</span>
+                    </div>
+                </div>
+
+                <!-- SASGIG -->
+                <div class="project-card">
+                    <h3>SASGIG - Student Gamer Tracker</h3>
+                    <p class="project-summary">Object-Oriented Data Tracking GUI Program in Java to manage student gamer information. Features JavaFX interface, CSV file import/export, and comprehensive editing capabilities with 100% JUnit 5 test coverage.</p>
+                    
+                    <div class="project-story" id="story-3">
+                        <p><em>SASGIG started as a simple idea: track student gamer information. Build it in Java. Make it work.</em></p>
+                        
+                        <p>But "make it work" felt too simple for where I was in my journey as a developer. I'd written enough sloppy code in previous courses. This time, I wanted excellence.</p>
+                        
+                        <p>The CLI version came together quickly—ArrayLists storing student data, CSV file persistence, basic CRUD operations. Functional, but clunky. When I converted it to JavaFX using SceneBuilder, I realized I was building something people might actually use. That raised the stakes.</p>
+                        
+                        <p>I committed to something ambitious: 100% test coverage with JUnit 5. Not 80%. Not "good enough." One hundred percent.</p>
+                        
+                        <p>It was tedious. Every method, every edge case, every possible user input error. But here's what happened: testing caught bugs I didn't know existed. That CSV parser? Failed on empty lines. The edit function? Crashed when searching for non-existent IDs. Without comprehensive tests, users would've discovered those bugs. Instead, I found them first.</p>
+                        
+                        <p><em>When I submitted SASGIG with its polished GUI, modular architecture, and that beautiful "100% coverage" badge in the test report, I wasn't just submitting an assignment. I was proving to myself I'd grown from a student who writes code to a developer who engineers solutions.</em></p>
+                    </div>
+                    
+                    <button type="button" class="read-more-btn" onclick="toggleStory('story-3', this)" aria-expanded="false" aria-controls="story-3">
+                        Read Story ▼
+                    </button>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">JavaFX</span>
+                        <span class="tag">JUnit 5</span>
+                        <span class="tag">CSV</span>
+                    </div>
+                </div>
+
+                <!-- Twitter-Like Database -->
+                <div class="project-card">
+                    <h3>Twitter-Like Database</h3>
+                    <p class="project-summary">Python and SQL-based CLI application emulating social media features including posts, comments, and user interactions. Designed relational schema with optimized SQL queries for efficient data retrieval and performance.</p>
+                    
+                    <div class="project-story" id="story-4">
+                        <p><em>"Build a Twitter-like database using Python and SQL." The assignment sounded straightforward until we realized none of us—not one person in our three-person team—had real SQL experience.</em></p>
+                        
+                        <p>I took the lead, not because I knew more, but because someone had to. We started by reverse-engineering Twitter: "What entities do we need? Users, posts, comments, likes, follows..." The list grew intimidating.</p>
+                        
+                        <p>Without proper relational schemas, our first SQL queries were disasters. We had circular dependencies. Foreign keys that referenced nothing. JOIN statements that returned gibberish. At one point, our "get user posts" query took 8 seconds to run. For 10 posts.</p>
+                        
+                        <p>I called a team meeting: "We need to step back. Let's draw this out properly." We spent an entire afternoon designing schemas on paper before writing another line of SQL. User table, Post table, Comment table, clear relationships. Primary keys, foreign keys, indexes.</p>
+                        
+                        <p>Once we had solid schemas, queries started making sense. We optimized. We refactored. That 8-second query? Down to 200 milliseconds.</p>
+                        
+                        <p>Then came the rewarding part: adding quality-of-life features. Search functionality. Sorting by popularity. Pagination. These weren't required, but we'd built a foundation solid enough to support them.</p>
+                        
+                        <p><em>When we demoed our CLI application—creating posts, adding comments, following users, all backed by optimized SQL—I realized we hadn't just completed an assignment. We'd taught ourselves database fundamentals that every backend developer needs. We'd taken something foreign and made it familiar through persistence and teamwork.</em></p>
+                    </div>
+                    
+                    <button type="button" class="read-more-btn" onclick="toggleStory('story-4', this)" aria-expanded="false" aria-controls="story-4">
+                        Read Story ▼
+                    </button>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">SQLite3</span>
+                        <span class="tag">Database Design</span>
+                    </div>
+                </div>
+
+                <!-- Data Analysis & Visualization -->
+                <div class="project-card">
+                    <h3>Data Analysis & Visualization</h3>
+                    <p class="project-summary">Analyzed real-world dataset with a 4-person team, creating interactive dashboards in Tableau and Excel. Applied data cleaning with OpenRefine and validation techniques to ensure accuracy and translate raw data into actionable insights.</p>
+                    
+                    <div class="project-story" id="story-5">
+                        <p><em>The dataset had 30,000+ entries—customer transactions, timestamps, product categories, everything we needed for compelling analysis. I'd spent hours finding it, vetting its quality, ensuring it was rich enough for visualization. My team of four was excited.</em></p>
+                        
+                        <p>We divided responsibilities: I handled data sourcing. Two teammates managed cleaning and Tableau visualization. The fourth—a second-year student, more experienced than me—took documentation. He'd write the technical report explaining our cleaning methodology, tools used, transformation steps.</p>
+                        
+                        <p>Weeks passed. We cleaned data in OpenRefine. We built interactive dashboards. We prepared our presentation. Everything looked good.</p>
+                        
+                        <p>Then I reviewed the documentation draft. My stomach dropped. The methodology section was vague—"we cleaned the data" without explaining how. Tools were listed without justification. Transformation steps were missing entirely.</p>
+                        
+                        <p>I knew it was incomplete. I knew it would cost us points. But he was a second-year. More experienced. Who was I to question his work? I stayed silent.</p>
+                        
+                        <p>When grades came back, we'd been marked down significantly. "Insufficient documentation of cleaning methodology." The feedback stung because I'd seen it coming and said nothing.</p>
+                        
+                        <p>That failure haunted me, but it also transformed me. I realized seniority doesn't equal correctness. Good communication isn't about hierarchy—it's about shared responsibility for quality. If you see a problem, you speak up. Period.</p>
+                        
+                        <p><em>Every project since then, I've volunteered to lead. Not because I want control, but because I learned that leadership means caring enough about the outcome to have difficult conversations. To ask questions. To push back when something isn't right. That dataset project earned me a poor grade, but it taught me something more valuable: your voice matters, regardless of who's in the room. That lesson has shaped every team interaction since, making me not just a better team member, but a more courageous one.</em></p>
+                    </div>
+                    
+                    <button type="button" class="read-more-btn" onclick="toggleStory('story-5', this)" aria-expanded="false" aria-controls="story-5">
+                        Read Story ▼
+                    </button>
+                    
+                    <div class="tech-tags">
+                        <span class="tag">Tableau</span>
+                        <span class="tag">Excel</span>
+                        <span class="tag">OpenRefine</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Crew Trainer</h3>
+                <div class="experience-meta">McDonald's | April 2023 – Present</div>
+                <ul>
+                    <li>Trained and mentored 15+ new employees on POS systems, workflows, food safety, and guest service procedures</li>
+                    <li>Troubleshot technical and operational issues to ensure continuous service with minimal downtime</li>
+                    <li>Delivered fast, accurate order processing across multiple system interfaces while maintaining data integrity</li>
+                    <li>Collaborated with management to streamline workflows, improving service speed and overall customer satisfaction</li>
+                    <li>Maintained high standards of cleanliness, organization, and operational efficiency in a fast-paced environment</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Community Engagement Executive</h3>
+                <div class="experience-meta">Calgary eSports United | May 2024 – Present</div>
+                <ul>
+                    <li>Delivered Level 1 technical support for gaming systems and event technology, resolving hardware, connectivity, and configuration issues for dozens of participants</li>
+                    <li>Organized and hosted community gaming events, including an official Pokémon tournament with smooth operations and positive user engagement</li>
+                    <li>Maintained system reliability by monitoring gaming setups, coordinating maintenance, and escalating technical incidents when necessary</li>
+                    <li>Collected and analyzed participation data to generate weekly engagement insights for management</li>
+                    <li>Fostered an inclusive and welcoming environment by providing clear communication and personalized support to new and returning participants</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Orientation Leader</h3>
+                <div class="experience-meta">University of Calgary | May 2024 – August 2024</div>
+                <ul>
+                    <li>Welcomed and supported 50+ incoming students during orientation, serving as their primary point of contact</li>
+                    <li>Led campus tours, academic resource sessions, and social events to support student transition and engagement</li>
+                    <li>Coordinated group activities and delivered real-time schedule updates to ensure smooth event flow</li>
+                    <li>Provided guidance, answered questions, and monitored student well-being with professionalism and empathy</li>
+                    <li>Worked closely with university staff to ensure seamless event operations and a positive onboarding experience</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Tech Fest Volunteer</h3>
+                <div class="experience-meta">University of Calgary | November 2024</div>
+                <ul>
+                    <li>Guided employers to VR game stations to encourage relaxed, informal networking with students</li>
+                    <li>Managed employer schedules and coordinated timing to ensure smooth participation</li>
+                    <li>Served as a point of contact for employers, answering questions and facilitating meaningful interactions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">C</span>
+                        <span class="skill-item">Assembly (ARMv8-A)</span>
+                        <span class="skill-item">Haskell</span>
+                        <span class="skill-item">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Tools, Frameworks & Technologies</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">JavaFX</span>
+                        <span class="skill-item">Java Swing</span>
+                        <span class="skill-item">JUnit 5</span>
+                        <span class="skill-item">MySQL</span>
+                        <span class="skill-item">SQLite3</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">GDB</span>
+                        <span class="skill-item">TCP/UDP</span>
+                        <span class="skill-item">HTTP/FTP</span>
+                        <span class="skill-item">SMTP/DNS</span>
+                        <span class="skill-item">Tableau</span>
+                        <span class="skill-item">MS Excel</span>
+                        <span class="skill-item">OpenRefine</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Data & Analytics</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Statistical Analysis</span>
+                        <span class="skill-item">Hypothesis Testing</span>
+                        <span class="skill-item">Data Visualization</span>
+                        <span class="skill-item">Parameter Estimation</span>
+                        <span class="skill-item">Statistical Modeling</span>
+                        <span class="skill-item">Data Manipulation</span>
+                        <span class="skill-item">Data Reporting</span>
+                        <span class="skill-item">Data Cleaning</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Core Computer Science</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Data Structures & Algorithms</span>
+                        <span class="skill-item">Algorithm Analysis</span>
+                        <span class="skill-item">Object-Oriented Programming</span>
+                        <span class="skill-item">Functional Programming</span>
+                        <span class="skill-item">Database Design & Normalization</span>
+                        <span class="skill-item">Relational Algebra</span>
+                        <span class="skill-item">System Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Advanced CS Topics</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Computer Architecture</span>
+                        <span class="skill-item">Computer Networks</span>
+                        <span class="skill-item">Theoretical Foundations</span>
+                        <span class="skill-item">Discrete Mathematics</span>
+                        <span class="skill-item">Probability Theory</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Security & Systems</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Information Security</span>
+                        <span class="skill-item">Cryptography</span>
+                        <span class="skill-item">Network Security</span>
+                        <span class="skill-item">Access Control</span>
+                        <span class="skill-item">Low-level Programming</span>
+                        <span class="skill-item">Troubleshooting</span>
+                        <span class="skill-item">System Architecture</span>
+                    </div>
+                </div>
+
+                <div class="skill-category full-width">
+                    <h3>Development Practices</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Agile Methodology</span>
+                        <span class="skill-item">Full-Stack Development</span>
+                        <span class="skill-item">Client-Server Programming</span>
+                        <span class="skill-item">Network Protocol Implementation</span>
+                        <span class="skill-item">UML Modeling</span>
+                        <span class="skill-item">Version Control (Git)</span>
+                        <span class="skill-item">Software Testing</span>
+                        <span class="skill-item">SQL Query Writing</span>
+                        <span class="skill-item">Program Correctness Proofs</span>
+                        <span class="skill-item">Client Presentations</span>
+                        <span class="skill-item">Relational Schema</span>
+                        <span class="skill-item">Enhanced Entity-Relationship Modeling</span>
+                        <span class="skill-item">ETL Processing</span>
+                        <span class="skill-item">Software Quality Assurance (SQA)</span>
+                        <span class="skill-item">Technical Documentation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="margin-bottom: 1.5rem; color: #9ca3af;">I'm currently seeking co-op opportunities. Feel free to reach out!</p>
+            <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+                <a href="mailto:tanjim.rahman0001@gmail.com" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.5rem;">📧</span>
+                    tanjim.rahman0001@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/tanjim-rahman-uofc/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.5rem;">💼</span>
+                    LinkedIn: tanjim-rahman-uofc
+                </a>
+                <a href="https://github.com/TJRahmanUofC" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.5rem;">🔗</span>
+                    GitHub: TJRahmanUofC
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; Built by Tanjim Rahman | 2024</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Toggle project story expansion
+        function toggleStory(storyId, button) {
+            const story = document.getElementById(storyId);
+            const isExpanded = story.classList.toggle('expanded');
+            
+            button.innerHTML = isExpanded ? 'Collapse ▲' : 'Read Story ▼';
+            button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        }
+    </script>
+</body>
+</html>
