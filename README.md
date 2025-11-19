@@ -4,7 +4,7 @@ This repository contains the source code for my personal portfolio website, buil
 
 ## Live Site
 
-🔗 TJRahman.github.io
+🔗 TJRahmanUofC.github.io
 
 ## Features
 
