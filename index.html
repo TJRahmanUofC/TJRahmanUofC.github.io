@@ -351,7 +351,7 @@
     <section class="hero">
         <div class="container">
             <h1>Hi, I'm Tanjim Rahman</h1>
-            <p>Computer Science Student at the University of Calgary | Seeking Co-op Opportunities</p>
+            <p>Computer Science Student at University of Calgary | Seeking Co-op Opportunities</p>
             <a href="#contact" class="cta-button">Get In Touch</a>
         </div>
     </section>
@@ -361,7 +361,7 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <p>I'm a Computer Science student at the University of Calgary with a passion for building robust, scalable software solutions. My journey has taken me from low-level assembly programming and computer architecture to full-stack web development and database systems—giving me a unique perspective on how software works at every layer.</p>
+                <p>I'm a Computer Science student at the University of Calgary (GPA: 3.56/4.0) with a passion for building robust, scalable software solutions. My journey has taken me from low-level assembly programming and computer architecture to full-stack web development and database systems—giving me a unique perspective on how software works at every layer.</p>
                 
                 <p>I specialize in leadership-driven development. Whether orchestrating a 20-person Agile team for a self-checkout system, designing normalized database architectures, or achieving 100% test coverage on production code, I've learned that great software requires both technical excellence and effective communication. I don't just write code—I anticipate problems, coordinate teams, and build solutions that last.</p>
                 
@@ -478,19 +478,27 @@
                     <p class="project-summary">Python and SQL-based CLI application emulating social media features including posts, comments, and user interactions. Designed relational schema with optimized SQL queries for efficient data retrieval and performance.</p>
                     
                     <div class="project-story" id="story-4">
-                        <p><em>"Build a Twitter-like database using Python and SQL." The assignment sounded straightforward until we realized none of us—not one person in our three-person team—had real SQL experience.</em></p>
+                        <p><em>"Build a Twitter-like database using Python and SQL." The assignment came with relational schemas already designed, but none of us—not one person in our three-person team—had ever written SQL before. And I was the only CS student.</em></p>
                         
-                        <p>I took the lead, not because I knew more, but because someone had to. We started by reverse-engineering Twitter: "What entities do we need? Users, posts, comments, likes, follows..." The list grew intimidating.</p>
+                        <p>My teammates were great people, hardworking and motivated, but they didn't know what a CLI application even looked like. So I pulled up SASGIG, a project I was working on at the same time. "See this menu? See how when you enter a number, it triggers a function? That's what we're building."</p>
                         
-                        <p>Without proper relational schemas, our first SQL queries were disasters. We had circular dependencies. Foreign keys that referenced nothing. JOIN statements that returned gibberish. At one point, our "get user posts" query took 8 seconds to run. For 10 posts.</p>
+                        <p>We needed structure. I proposed dividing the work into three files: a CLI startup menu, a backend functionalities file, and a data initialization file. I'd handle the CLI development since I had experience with command-line interfaces. They'd start with the data file—creating tables, populating initial users. For the backend, we split it: I took follow/unfollow functionality, and they tackled posting, liking, and comments.</p>
                         
-                        <p>I called a team meeting: "We need to step back. Let's draw this out properly." We spent an entire afternoon designing schemas on paper before writing another line of SQL. User table, Post table, Comment table, clear relationships. Primary keys, foreign keys, indexes.</p>
+                        <p>But here's the thing—none of us knew SQL.</p>
                         
-                        <p>Once we had solid schemas, queries started making sense. We optimized. We refactored. That 8-second query? Down to 200 milliseconds.</p>
+                        <p>I started hosting meetings outside of class. Not just quick check-ins—real working sessions where we'd sit together, debug together, write queries together. "Why is this SELECT statement returning nothing?" "How do we JOIN these tables properly?" We'd pull up documentation, test queries in the terminal, break things, fix things.</p>
                         
-                        <p>Then came the rewarding part: adding quality-of-life features. Search functionality. Sorting by popularity. Pagination. These weren't required, but we'd built a foundation solid enough to support them.</p>
+                        <p>The errors were relentless. Foreign key constraints we didn't understand. INSERT statements that failed silently. JOIN queries that returned duplicate rows. Every time we thought we'd figured it out, a new bug appeared—especially when we started adding quality-of-life features like nested comments and inline reply threads.</p>
                         
-                        <p><em>When we demoed our CLI application—creating posts, adding comments, following users, all backed by optimized SQL—I realized we hadn't just completed an assignment. We'd taught ourselves database fundamentals that every backend developer needs. We'd taken something foreign and made it familiar through persistence and teamwork.</em></p>
+                        <p>I wanted to use Git for version control, but my teammates weren't CS students—they'd never touched it. "Can we just share files on Discord?" they asked. It wasn't ideal, but it worked. We adapted.</p>
+                        
+                        <p>One teammate came up with the solution for password encryption using bcrypt—a project requirement we'd been stuck on. Another debugged a tricky timeline-ordering issue. When they hit walls with their SQL statements during QOL updates, I'd hop on a call and we'd work through it together.</p>
+                        
+                        <p>By the end, something incredible happened: we were all fluent in SQL. We could write complex JOINs without thinking. We understood FOREIGN KEY relationships intuitively. We'd built a fully functional social media backend with features even we hadn't planned initially—comment threads, immediate tweet replies, graceful error handling.</p>
+                        
+                        <p>For our technical presentation, we recorded a demo showcasing every feature. Watching it work flawlessly—users logging in, posting tweets, following each other, nested comments flowing perfectly—felt incredible.</p>
+                        
+                        <p><em>This project taught me that leadership isn't about being the most technical person in the room. It's about meeting your team where they are, creating structure when there's chaos, and learning together. We didn't just build a database—we became developers together.</em></p>
                     </div>
                     
                     <button type="button" class="read-more-btn" onclick="toggleStory('story-4', this)" aria-expanded="false" aria-controls="story-4">
@@ -734,7 +742,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; Built by Tanjim Rahman | 2024</p>
+            <p>&copy; Made by Tanjim Rahman | 2025 </p>
         </div>
     </footer>
 
